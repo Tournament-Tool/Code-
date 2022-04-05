@@ -1,8 +1,7 @@
 <?php
-// default values for Xampp:
-// specifies the MySQL login details along with some about the database to use
 $dbhost  = 'localhost';
 $dbuser  = 'root';
 $dbpass  = '';
+//we will use the same database from last week
 $dbname  = 'tournament';
 ?>
