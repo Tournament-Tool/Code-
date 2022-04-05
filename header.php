@@ -13,7 +13,7 @@ session_start();
 echo <<< _END
 <!DOCTYPE html>
 <title>Tournament Project</title>
-<head class='header'>
+<head class='headerBtn'>
     <h5 class="title">Tournament Project</h5>
     <a><button class="theme-btns" id="darkTheme" name="darkTheme" onclick="changeColour('dark')">Dark Mode</button></a>
     <a><button class="theme-btns" id="lightTheme" name="lightTheme" onclick="changeColour('light')">Light Mode</button></a>
