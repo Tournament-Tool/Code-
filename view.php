@@ -1,7 +1,8 @@
 <?php
-$connection = mysqli_connect($dbhost, $dbuser, $dbpass);
+include 'header.php';
+include 'credentials.php';
 
-
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if (!$connection)
 {
     die("Connection failed: " . $mysqli_connect_error);
@@ -12,14 +13,15 @@ $results = mysqli_query($connection, $query);
 $n = mysqli_num_rows($results);
 
 if($n > 0){
-    echo"<table>";
+
 for($i = 0; $i < $n; $i++){
     $rows = mysqli_fetch_assoc($results);
-    echo"<tr>";
-    echo"<td>{$rows['title']}</td><td>{$rows['start_date']}</td><td>{$rows['game']}</td><td>{$rows['creator_name']}</td><td>{$rows['format']}</td><td>{$rows['bracket_image']}</td>";
-    echo"<tr>";
+    echo "<table>";
+    echo"<tr><td>{$rows['title']}</td></tr><tr><td>{$rows['start_date']}</td></tr><td>{$rows['game']}</td></tr><tr><td>{$rows['creator_name']}</td></tr><tr><td>{$rows['format']}</td></tr><tr><td>{$rows['bracket_image']}</td></tr>";
+    echo "<tr><td><input type='submit' value='View' name='submit'></td></tr>";
+    echo "</table>";
 }
-echo"</table>";
+
 }
 
 
