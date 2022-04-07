@@ -3,4 +3,11 @@
    BUTTONS: #F64C72
 */
 
+/* CODE BELOW IS FOR VIEW TOURNAMENT, BREAKS THE VIEW TOURNAMENT PAGE IF REMOVED THANKS
+*/
+
+table {
+    float: left;
+}
+
 .headBtn {}
