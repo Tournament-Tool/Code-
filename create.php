@@ -77,7 +77,52 @@ for ($i=0; $i<count($title); $i++)
     }
 }
 
+$sql = "DROP TABLE IF EXISTS users";
+
+if (mysqli_query($connection, $sql))
+{
+    echo "Dropped existing table: users<br>";
+}
+else
+{
+    die("Error checking for existing table: " . mysqli_error($connection));
+}
+
+$sql = "CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT, username VARCHAR(16), password VARCHAR(210), firstname VARCHAR(100), lastname VARCHAR(100), email VARCHAR(255), date_of_birth DATE, PRIMARY KEY(id))";
+
+
+if (mysqli_query($connection, $sql))
+{
+    echo "Table created successfully: users<br>";
+}
+else
+{
+    die("Error creating table: " . mysqli_error($connection));
+}
+
+$username[] = 'Tom'; $password[] ='2022-04-14'; $firsname[] = 'Thomas'; $lastname[] = 'Shelby'; $email[] = 't.shelby@peaky_fucking_blinders.com'; $date_of_birth[] = '1920-03-15';
+$username[] = 'baco'; $password[] ='paco'; $firsname[] = 'Plamen'; $lastname[] = 'Bukov'; $email[] = 'plamen_bukov@gmail.com'; $date_of_birth[] = '2001-01-27';
+
+
+for ($i=0; $i<count($username); $i++)
+{
+    $sql = "INSERT INTO users (username, password, firstname, lastname, email, date_of_birth) VALUES ('$username[$i]', '$password[$i]', '$firsname[$i]', '$lastname[$i]', '$email[$i]', '$date_of_birth[$i]')";
+    print_r($sql);
+
+    // no data returned, we just test for true(success)/false(failure):
+    if (mysqli_query($connection, $sql))
+    {
+        echo "row inserted<br>";
+    }
+    else
+    {
+        die("Error inserting row: " . mysqli_error($connection));
+    }
+}
+
+
 
 mysqli_close($connection);
 
 ?>
+
