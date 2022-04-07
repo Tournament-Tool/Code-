@@ -1,5 +1,11 @@
 <?php
-
+include 'header.php';
+include 'credentials.php';
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+if (!$connection)
+{
+    die("Connection failed: " . $mysqli_connect_error);
+}
 echo<<<_START
 <form action="signIn.php" method="post">
 Please enter a username and password<br>
@@ -33,8 +39,9 @@ _START;
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
 
+        $getId = mysqli_fetch_assoc($result);
 
-        echo "Hi, $username, you have successfully logged in";
+        echo "Hi, $username, you have successfully logged in<br>";
 
     }
 }
