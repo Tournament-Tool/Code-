@@ -51,7 +51,7 @@ if (isset($_SESSION['loggedIn']))
             <a class='options' href=''>Sign Out</a>
             <br><br>
         </div>
-    _END;
+_END;
     }
     
     else{
@@ -64,7 +64,7 @@ if (isset($_SESSION['loggedIn']))
         <a class='options' href=''>Sign Out</a>
         <br><br>
     </div>
-    _END;
+_END;
     }
 }
 else
@@ -80,7 +80,7 @@ else
         <a class='options' href=''>Login</a>
         <br><br>
     </div>
-    _END;
+_END;
     }
 echo'<body id="background" class="background">';
 echo "</body></html>";
