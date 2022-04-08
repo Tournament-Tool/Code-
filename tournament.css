@@ -1,13 +1,29 @@
-/* BACKGROUND COLOR: #2F2FA2
-   TEXT: White
-   BUTTONS: #F64C72
-*/
-
-/* CODE BELOW IS FOR VIEW TOURNAMENT, BREAKS THE VIEW TOURNAMENT PAGE IF REMOVED THANKS
-*/
+/* CODE BELOW IS FOR VIEW TOURNAMENT, BREAKS THE VIEW TOURNAMENT PAGE IF REMOVED THANKS*/
 
 table {
     float: left;
 }
 
-.headBtn {}
+body {
+    background-color: #2f2fa2;
+    color: #ffffff;
+    font-family: 'Lucida Sans', Arial;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+.menu-container {
+    text-align: center;
+}
+
+.options {
+    color: #ff6cd3;
+}
+
+.theme-btns {
+    margin-left: 0%;
+    margin-top: 0%;
+}
