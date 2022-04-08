@@ -12,7 +12,8 @@ if (isset($_GET['id'])) {
         die("Connection failed: " . $mysqli_connect_error);
     }
 
-    $query = "SELECT title, start_date, game, creator_name, format, bracket_image FROM tournaments WHERE id = '$id'";
+    $query = "SELECT tournaments.title, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON tournaments.id = games.id
+    INNER JOIN users ON tournaments.creator_id = users.id WHERE tournaments.id = '$id'";
 
     $result = mysqli_query($connection, $query);
 
@@ -21,9 +22,9 @@ if (isset($_GET['id'])) {
     if ($n > 0){
         $row = mysqli_fetch_assoc($result);
         $title = $row['title'];
-        $start_date = $row['start_date'];
-        $game = $row['game'];
-        $creator_name = $row['creator_name'];
+        $start_date = $row['creation_date'];
+        $game = $row['title'];
+        $creator_name = $row['username'];
         $format = $row['format'];
         $bracket_image = $row['bracket_image'];
         echo <<<_END
