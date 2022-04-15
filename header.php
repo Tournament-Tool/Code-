@@ -10,15 +10,22 @@ session_start();
 // the majority of the following becomes the 'top' of the pages
 // that appear on our web site
 
+$username = $_SESSION['username'];
+
+if($username == null){
+    $username = "Not logged in";
+}
+
 echo <<< _END
 <!DOCTYPE html>
 <a><button class="theme-btns" id="darkTheme" name="darkTheme" onclick="changeColour('dark')">Dark Mode</button></a>
 <a><button class="theme-btns" id="lightTheme" name="lightTheme" onclick="changeColour('light')">Light Mode</button></a>
 <title>Tournament Project</title>
-<head class='headerBtn'>
+<head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <h1 class="title">Tournament Project</h1>
     <h5><div id="getTime"></div></h5>
+    <h5 id="username-box">$username</h5>
 </head>
 <link id='colourTheme' rel='stylesheet' href='tournament.css'>     
 <script src='header.js'></script>
@@ -35,21 +42,19 @@ else if($_COOKIE['colourTheme']=="light")
  echo "<link id='colourTheme' rel='stylesheet' href='tournament.css'>";
 }
 
-
-
 if (isset($_SESSION['loggedIn']))
 {
+    $username = $_SESSION['username'];
     // THIS PERSON IS LOGGED IN
 
-    if($_SESSION['username']=='admin'){
+    if($username =='admin'){
     // show the admin menu options:
         echo <<<_END
         <div class="menu-container">
-            <a class='options' href=''>Home</a>
-            <a class='options' href=''>About</a>
-            <a class='options' href=''>Tournament</a>
-            <a class='options' href=''>Login</a>
-            <a class='options' href=''>Sign Out</a>
+            <a class='options' href='about.php'>About</a>
+            <a class='options' href='tournament.php'>View Tournaments</a>
+            <a class='options' href='create.php'>Create Tournaments</a>
+            <a class='options' href='signout.php'>Sign Out</a>
             <br><br>
         </div>
 _END;
@@ -58,13 +63,13 @@ _END;
     else{
     // show the logged in, user menu options:    
     echo <<<_END
-    <div class="menu-container">
-        <a class='options' href=''>Home</a>
-        <a class='options' href=''>About</a>
-        <a class='options' href=''>Tournament</a>
-        <a class='options' href=''>Sign Out</a>
-        <br><br>
-    </div>
+        <div class="menu-container">
+            <a class='options' href='about.php'>About</a>
+            <a class='options' href='tournament.php'>View Tournaments</a>
+            <a class='options' href='create.php'>Create Tournaments</a>
+            <a class='options' href='signout.php'>Sign Out</a>
+            <br><br>
+        </div>
 _END;
     }
 }
@@ -72,13 +77,12 @@ else
 {
     // THIS PERSON IS NOT LOGGED IN
     // show the logged out menu options:
-
     echo <<<_END
     <div class="menu-container">
-        <a class='options' href=''>Home</a>
-        <a class='options' href=''>About</a>
-        <a class='options' href=''>Tournament</a>
-        <a class='options' href=''>Login</a>
+        <a class='options' href='about.php'>About</a>
+        <a class='options' href='tournaments.php'>View Tournaments</a>
+        <a class='options' href='signin.php'>Login</a>
+        <a class='options' href='signup.php'>Sign Up</a>
         <br><br>
     </div>
 _END;
