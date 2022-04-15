@@ -1,8 +1,10 @@
 <?php
+include 'header.php';
 if (isset($_SESSION['loggedIn'])){
     unset($_SESSION['loggedIn']);
-    $_SESSION = array();
-    session_destroy();
-    echo"You have signed out";
-}
+    header("Refresh:0");
+}elseif (!isset($_SESSION['loggedIn'])){
+    echo "You have logged out";
+    }
+include 'footer.php';
 ?>
