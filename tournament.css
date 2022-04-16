@@ -28,6 +28,6 @@ h1 {
     margin-top: 0%;
 }
 
-.allTeams_table, .allTeams_table td {
+.allTeams_table, .allTeams_table td, .allTeams_table th {
     border: 1px solid;
 }
