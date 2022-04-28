@@ -11,6 +11,7 @@ session_start();
 // that appear on our web site
 
 $username = $_SESSION['username'];
+date_default_timezone_set('Europe/London');
 
 if($username == null){
     $username = "Not logged in";
@@ -52,7 +53,7 @@ if (isset($_SESSION['loggedIn']))
         echo <<<_END
         <div class="menu-container">
             <a class='options' href='about.php'>About</a>
-            <a class='options' href='tournament.php'>View Tournaments</a>
+            <a class='options' href='view.php'>View Tournaments</a>
             <a class='options' href='create.php'>Create Tournaments</a>
             <a class='options' href='signout.php'>Sign Out</a>
             <br><br>
@@ -65,7 +66,7 @@ _END;
     echo <<<_END
         <div class="menu-container">
             <a class='options' href='about.php'>About</a>
-            <a class='options' href='tournament.php'>View Tournaments</a>
+            <a class='options' href='view.php'>View Tournaments</a>
             <a class='options' href='create.php'>Create Tournaments</a>
             <a class='options' href='signout.php'>Sign Out</a>
             <br><br>
@@ -80,7 +81,7 @@ else
     echo <<<_END
     <div class="menu-container">
         <a class='options' href='about.php'>About</a>
-        <a class='options' href='tournaments.php'>View Tournaments</a>
+        <a class='options' href='view.php'>View Tournaments</a>
         <a class='options' href='signin.php'>Login</a>
         <a class='options' href='signup.php'>Sign Up</a>
         <br><br>
