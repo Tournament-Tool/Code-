@@ -1,6 +1,5 @@
 <?php
 include 'header.php';
-include 'credentials.php';
 
 if (isset($_SESSION['loggedIn'])){
         $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -10,7 +9,7 @@ if (isset($_SESSION['loggedIn'])){
     }
 
 
-    $query = "SELECT tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON tournaments.id = games.id
+    $query = "SELECT tournaments.id, tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON tournaments.id = games.id
     INNER JOIN users ON tournaments.creator_id = users.id";
 
     $result = mysqli_query($connection, $query);
@@ -29,15 +28,19 @@ if (isset($_SESSION['loggedIn'])){
         echo <<<_END
         <body>
         <table>
-            <tr><td>{$title}</td></tr>
-            <tr><td>Game: {$game}</td></tr>  <tr><td>Format: {$format}</td></tr>  <tr><td>by: {$creator_name}</td></tr>
-            <tr><td>{$start_date}</td></tr>
-            <tr><td><img src="{$bracket_image}" alt="{$title}" title="{$title}" width="200" height="150"></td></tr>
+        <tr><td>{$title}</td></tr>
+        <tr><td>Game: {$game}</td></tr>  <tr><td>Format: {$format}</td></tr>  <tr><td>by: {$creator_name}</td></tr>
+        <tr><td>{$start_date}</td>
+        </tr><tr><td><img src="{$bracket_image}" alt="{$title}" title="{$title}" width="200" height="150"></td></tr>
+            <form action="view.php" method="post">
             <tr><td><button id="copyButton">Share Tournament</button></td></tr>
+            <tr><td><button name="join" value="{$row['id']}">Send Application</button></td></tr>
 
+            </form>
         </body>
     </html>
 _END;
+
     }
 }
 
@@ -48,6 +51,11 @@ mysqli_close($connection);
 }
 elseif (!isset($_SESSION['loggedIn'])){
     echo"You need to be signed in to view this page";
+}
+
+if(isset($_POST['join'])){
+    $_SESSION['join'] = $_POST["join"];
+    header('Location: application.php');
 }
 include_once 'footer.php';
 
