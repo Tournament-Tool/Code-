@@ -30,18 +30,27 @@ _START;
     $query = "SELECT * FROM users WHERE username= '$username' AND password = '$password'";
     $result = mysqli_query($connection, $query);
 
+    $q = "SELECT id FROM users WHERE username= '$username' AND password = '$password'";
+    $r = mysqli_query($connection, $q);
+
     $n = mysqli_num_rows($result);
 
     if ($n > 0)
     {
         $_SESSION['loggedIn'] = 1;
+        for($i = 0; $i < $n; $i++){
+            $row = mysqli_fetch_assoc($r);
+        $_SESSION['id'] = $row['id'];
         }
+        }
+
         $_SESSION['username'] = $username;
         $_SESSION['password'] = $password;
 
         $getId = mysqli_fetch_assoc($result);
 
         echo "Hi, $username, you have successfully logged in<br>";
+        header("Refresh:0");
 
     }
 }
