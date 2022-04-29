@@ -7,20 +7,26 @@ if (!$connection)
     die("Connection failed: " . $mysqli_connect_error);
 }
 echo<<<START
-    <form action="signup.php" method="post">
-  Username: <input type="text" name="user" id="user">
-  <br>
-  Password: <input type="password" name="pass" id="pass">
-  <br>
-  First Name: <input type="text" name="firstname" id="firstname">
-  <br>
-  Last Name: <input type="text" name="lastname" id="lastname">
-  <br>
-  Email: <input type="text" name="email" id="email">
-  <br>
-  Date of Birth <input type="date" name="dob" id="dob"><br>
-  <input type="submit" value="Submit" name="submit">
-</form>
+<br><br><br>
+<div class="container">
+    <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto">
+        <form action="signup.php" method="post">
+            Username: <input type="text" name="user" id="user">
+            <br><br>
+            Password: <input type="password" name="pass" id="pass">
+            <br><br>
+            First Name: <input type="text" name="firstname" id="firstname">
+            <br><br>
+            Last Name: <input type="text" name="lastname" id="lastname">
+            <br><br>
+            Email: <input type="text" name="email" id="email">
+            <br><br>
+            Date of Birth <input type="date" name="dob" id="dob">
+            <br><br>
+            <input id="login_signup_button"type="submit" value="Submit" name="submit" class="w-25">
+        </form>
+    </div>
+</div>
 START;
 
 if(isset($_POST['user'])){
