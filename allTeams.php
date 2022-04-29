@@ -35,7 +35,7 @@ if (isset($_SESSION['loggedIn'])) {
                     $creation_date = $row['creation_date'];
 
                 echo <<<_END
-                    "<tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>"
+                    <tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>
     _END;
                 }
                 echo "</table>";
