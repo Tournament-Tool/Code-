@@ -57,7 +57,7 @@ if (isset($_SESSION['loggedIn'])) {
 
         $team_joining = $_POST['join_team'];
 
-        $query = "INSERT INTO team_members (team_id, user_id, join_date) Values ('$team_joining', '$user_id', SYSDATE())";
+        $query = "INSERT INTO team_members (team_id, user_id, join_date, status, role, resign_date) Values ('$team_joining', '$user_id', SYSDATE(), 'Pending', 'Player', '0000-00-00')";
 
                     $result = mysqli_query($connection, $query);
 
