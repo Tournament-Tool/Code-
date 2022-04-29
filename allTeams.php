@@ -22,7 +22,10 @@ if (isset($_SESSION['loggedIn'])) {
         
         
         echo "<body>";
+            echo "<br><br><div class=\"container\">";
+            echo "<div class=\"col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto\">";
             echo "<table class=\"allTeams_table\">";
+            echo "<th>Team ID</th><th>Team Name</th><th>Creator Name</th><th>Team Name</th><th>Creation Date</th>";
             for($i = 0; $i < $n; $i++){
                 $row = mysqli_fetch_assoc($result);
 
@@ -36,6 +39,8 @@ if (isset($_SESSION['loggedIn'])) {
 _END;
             }
             echo "</table>";
+            echo "</div>";
+            echo "</div>";
         echo "</body>";
         echo "</html>";
 
@@ -106,7 +111,7 @@ _END;
 
     }
 
-    //user mot logged in cannot join a team
+    //user not logged in cannot join a team
     if (isset($_POST['join_team'])) {
 
         echo "<h2>You must be signed in to join a team</h2>";
