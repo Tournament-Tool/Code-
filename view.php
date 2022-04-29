@@ -27,7 +27,7 @@ if (isset($_SESSION['loggedIn'])){
         $bracket_image = $row['bracket_image'];
         echo <<<_END
         <body>
-        <table>
+        <table class="ms-5 mt-5">
         <tr><td>{$title}</td></tr>
         <tr><td>Game: {$game}</td></tr>  <tr><td>Format: {$format}</td></tr>  <tr><td>by: {$creator_name}</td></tr>
         <tr><td>{$start_date}</td>
@@ -37,6 +37,7 @@ if (isset($_SESSION['loggedIn'])){
             <tr><td><button name="join" value="{$row['id']}">Send Application</button></td></tr>
 
             </form>
+        </table>
         </body>
     </html>
 _END;
