@@ -20,7 +20,7 @@ if (isset($_SESSION['loggedIn'])) {
         $user_id = $row['id'];
 
         //get team name for current logged in user
-        $query = "SELECT teams.name from team_members INNER JOIN teams ON team_members.team_id = teams.id WHERE team_members.user_id = '$user_id'";
+        $query = "SELECT teams.name, role, join_date from team_members INNER JOIN teams ON team_members.team_id = teams.id WHERE team_members.user_id = '$user_id'";
 
         $result = mysqli_query($connection, $query);
 
@@ -30,18 +30,24 @@ if (isset($_SESSION['loggedIn'])) {
         if ($n > 0) {
 
             echo "<body>";
+            echo "<br><br><br><div class=\"container\">";
+            echo "<div class=\"col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto\">";
             echo "<table class=\"allTeams_table\">";
-            echo "<th>Username</th><th>team</th>";
+            echo "<th>Username</th><th>Team Name</th><th>Role</th><th>Join Date</th>";
             for($i = 0; $i < $n; $i++){
                 $row = mysqli_fetch_assoc($result);
                 $team_name = $row['name'];
+                $role = $row['role'];
+                $join_date = $row['join_date'];
 
                 echo <<<_END
-                 "<tr><td>$username</td><td>$team_name</td></tr>"
+                 "<tr><td>$username</td><td>$team_name</td><td>$role</td><td>$join_date</td></tr>"
 _END;
             }
 
             echo "</table>";
+            echo "</div>";
+            echo "</div>";
             echo "</body>";
             echo "</html>";
 
