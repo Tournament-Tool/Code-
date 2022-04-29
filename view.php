@@ -19,6 +19,7 @@ if (isset($_SESSION['loggedIn'])){
     if ($n > 0){
         for($i = 0; $i < $n; $i++){
         $row = mysqli_fetch_assoc($result);
+        $id = $row['id'];
         $title = $row['ttitle'];
         $start_date = $row['creation_date'];
         $game = $row['title'];
@@ -33,7 +34,7 @@ if (isset($_SESSION['loggedIn'])){
         <tr><td>{$start_date}</td>
         </tr><tr><td><img src="{$bracket_image}" alt="{$title}" title="{$title}" width="200" height="150"></td></tr>
             <form action="view.php" method="post">
-            <tr><td><button id="copyButton">Share Tournament</button></td></tr>
+            <tr><td><button name="viewButton" value="{$row['id']}"> View Tournament</button></td></tr>
             <tr><td><button name="join" value="{$row['id']}">Send Application</button></td></tr>
 
             </form>
@@ -57,6 +58,11 @@ elseif (!isset($_SESSION['loggedIn'])){
 if(isset($_POST['join'])){
     $_SESSION['join'] = $_POST["join"];
     header('Location: application.php');
+}
+
+if(isset($_POST['viewButton'])){
+    $loc = $_POST["viewButton"];
+    header("Location: tournament.php?id={$loc}");
 }
 include_once 'footer.php';
 
