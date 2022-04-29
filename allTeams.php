@@ -24,21 +24,21 @@ if (isset($_SESSION['loggedIn'])) {
         echo "<body>";
             echo "<br><br><div class=\"container\">";
             echo "<div class=\"col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto\">";
-            echo "<table class=\"allTeams_table\">";
-            echo "<th>Team ID</th><th>Team Name</th><th>Creator Name</th><th>Team Name</th><th>Creation Date</th>";
-            for($i = 0; $i < $n; $i++){
-                $row = mysqli_fetch_assoc($result);
+                echo "<table class=\"allTeams_table\">";
+                echo "<th>Team ID</th><th>Team Name</th><th>Creator Name</th><th>Team Name</th><th>Creation Date</th>";
+                for($i = 0; $i < $n; $i++){
+                    $row = mysqli_fetch_assoc($result);
 
-                $team_ID = $row['id'];
-                $team_name = $row['name'];
-                $creator_name = $row['username'];
-                $creation_date = $row['creation_date'];
+                    $team_ID = $row['id'];
+                    $team_name = $row['name'];
+                    $creator_name = $row['username'];
+                    $creation_date = $row['creation_date'];
 
-               echo <<<_END
-                 "<tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>"
-_END;
-            }
-            echo "</table>";
+                echo <<<_END
+                    "<tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>"
+    _END;
+                }
+                echo "</table>";
             echo "</div>";
             echo "</div>";
         echo "</body>";
@@ -92,20 +92,24 @@ else {
         
         
         echo "<body>";
-            echo "<table class=\"allTeams_table\">";
-            for($i = 0; $i < $n; $i++){
-                $row = mysqli_fetch_assoc($result);
+             echo "<br><br><div class=\"container\">";
+            echo "<div class=\"col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto\">";
+                echo "<table class=\"allTeams_table\">";
+                for($i = 0; $i < $n; $i++){
+                    $row = mysqli_fetch_assoc($result);
 
-                $team_ID = $row['id'];
-                $team_name = $row['name'];
-                $creator_name = $row['username'];
-                $creation_date = $row['creation_date'];
+                    $team_ID = $row['id'];
+                    $team_name = $row['name'];
+                    $creator_name = $row['username'];
+                    $creation_date = $row['creation_date'];
 
-               echo <<<_END
-                 "<tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>"
-_END;
-            }
-            echo "</table>";
+                echo <<<_END
+                    "<tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>"
+    _END;
+                }
+                echo "</table>";
+            echo "</div>";
+            echo "</div>";
         echo "</body>";
         echo "</html>";
 
