@@ -29,12 +29,15 @@ if (isset($_GET['id'])) {
         $bracket_image = $row['bracket_image'];
         echo <<<_END
         <body>
-            <h1>{$title}</h1>
-            <h3>Game: {$game} &emsp; Format: {$format} &emsp; by: {$creator_name}</h3>
-            <h4>{$start_date}</h4>
-            <img src="{$bracket_image}" alt="{$title}" title="{$title}" width="200" height="150">
-            <button id="copyButton">Share Tournament</button>
-
+            <br><br><br><div class="container">
+            <div class="col-10 col-sm-10 col-md-6 col-lg-7 col-xl-8 col-xxl-10 mx-auto">
+                <h1>{$title}</h1><br>
+                <h3>Game: {$game} &emsp; Format: {$format}</h3><br>
+                <h4>Created By: {$creator_name} &emsp; On {$start_date}</h4><br>
+                <img src="{$bracket_image}" alt="{$title}" title="{$title}" width="200" height="150"><br><br><br>
+                <button id="copyButton">Share Tournament</button>
+            </div>
+            </div>
         </body>
     </html>
 _END;
