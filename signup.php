@@ -19,7 +19,7 @@ echo<<<START
             <br><br>
             Last Name: <input type="text" name="lastname" id="lastname">
             <br><br>
-            Email: <input type="text" name="email" id="email">
+            Email: <input type="email" name="email" id="email">
             <br><br>
             Date of Birth <input type="date" name="dob" id="dob">
             <br><br>
