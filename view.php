@@ -9,7 +9,7 @@ if (isset($_SESSION['loggedIn'])){
     }
 
 
-    $query = "SELECT tournaments.id, tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON tournaments.id = games.id
+    $query = "SELECT tournaments.id, tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON games.id = tournaments.game_id
     INNER JOIN users ON tournaments.creator_id = users.id";
 
     $result = mysqli_query($connection, $query);
@@ -65,5 +65,4 @@ if(isset($_POST['viewButton'])){
     header("Location: tournament.php?id={$loc}");
 }
 include_once 'footer.php';
-
 ?>
