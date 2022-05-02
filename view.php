@@ -47,12 +47,12 @@ _END;
 }
 
     else {
-        echo "<h1>Tournament not found!</h1>";
+        echo "<br><br><br><h1 class=\"text-center\">Tournament not found!</h1>";
     }
 mysqli_close($connection);
 }
 elseif (!isset($_SESSION['loggedIn'])){
-    echo"You need to be signed in to view this page";
+    echo"<br><br><br><h2 class=\"text-center\">You need to be signed in to view this page</h2>";
 }
 
 if(isset($_POST['join'])){
