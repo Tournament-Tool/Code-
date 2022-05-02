@@ -20,7 +20,7 @@ if (isset($_SESSION['loggedIn'])) {
         $user_id = $row['id'];
 
         //get team name for current logged in user
-        $query = "SELECT teams.name, role, join_date from team_members INNER JOIN teams ON team_members.team_id = teams.id WHERE team_members.user_id = '$user_id'";
+        $query = "SELECT teams.name, role, status, join_date from team_members INNER JOIN teams ON team_members.team_id = teams.id WHERE team_members.user_id = '$user_id'";
 
         $result = mysqli_query($connection, $query);
 
@@ -33,15 +33,16 @@ if (isset($_SESSION['loggedIn'])) {
             echo "<br><br><br><div class=\"container\">";
             echo "<div class=\"col-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4 mx-auto\">";
             echo "<table class=\"allTeams_table\">";
-            echo "<th>Username</th><th>Team Name</th><th>Role</th><th>Join Date</th>";
+            echo "<th>Username</th><th>Team Name</th><th>Role</th><th>Status</th><th>Join/Request Date</th>";
             for($i = 0; $i < $n; $i++){
                 $row = mysqli_fetch_assoc($result);
                 $team_name = $row['name'];
                 $role = $row['role'];
                 $join_date = $row['join_date'];
+                $status = $row['status'];
 
                 echo <<<_END
-                 <tr><td>$username</td><td>$team_name</td><td>$role</td><td>$join_date</td></tr>
+                 <tr><td>$username</td><td>$team_name</td><td>$role</td><td>$status</td><td>$join_date</td></tr>
 _END;
             }
 
@@ -55,13 +56,13 @@ _END;
         }
         //user has not joined any team
         else {
-            echo "<h2>You have not joined any teams</h2>";
+            echo "<br><br><br><h2 class=\"text-center\">You have not joined any teams</h2>";
         }
 }
 
 else {
 
-  echo "<h2>You must be signed in to view your teams</h2>";
+  echo "<br><br><br><h2 class=\"text-center\">You must be signed in to view your teams</h2>";
     
 }
 
