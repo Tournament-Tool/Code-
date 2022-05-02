@@ -14,7 +14,7 @@ echo<<<_START
             Please enter a username and password<br><br>
             Username: <input type="text" name="username" id="username">
             <br><br>
-            Password: <input type="text" name="password" id="password">
+            Password: <input type="password" name="password" id="password">
             <br><br>
                 <input id="login_signup_button" type="submit" value="Submit" name="submit" class="w-25">
         </form>
