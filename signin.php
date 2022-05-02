@@ -44,10 +44,10 @@ _START;
     if ($n > 0)
     {
         $_SESSION['loggedIn'] = 1;
-        for($i = 0; $i < $n; $i++){
+
+        for($i = 0; $i < $n; $i++)  {
             $row = mysqli_fetch_assoc($r);
-        $_SESSION['id'] = $row['id'];
-        }
+            $_SESSION['id'] = $row['id'];
         }
 
         $_SESSION['username'] = $username;
@@ -58,6 +58,13 @@ _START;
         echo "<br><h2 class=\"text-center\"> Hi, $username, you have successfully logged in <div class=\"spinner-border\" role=\"status\"><span class=\"sr-only\"></span></div></h2><br>";
         header("Refresh:2; URL=about.php");
 
+        }
+
+        else {
+            echo "<br><h2 class=\"text-center\"> Your logggin details are incorrect!</h2>";
+        }
+
+        
     }
 }
 ?>
