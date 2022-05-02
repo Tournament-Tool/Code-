@@ -45,10 +45,10 @@ if ($num == 0)
 {
     $q  = "INSERT INTO users(username, password, firstname, lastname, email, date_of_birth) VALUES('$user','$pass','$firstName','$lastName','$email','$dob')";
 mysqli_query($connection, $q);
-    echo "Sign up successful";
+    echo "<br><br><br><h2 class=\"text-center\">Sign up successful</h2>";
 
 }elseif ($num > 0){
-    echo "Account already exists";
+    echo "<br><br><br><h2 class=\"text-center\">Account already exists</h2>";
 }
 }
 ?>
