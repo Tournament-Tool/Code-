@@ -36,7 +36,7 @@ if (isset($_SESSION['loggedIn'])) {
 
                 echo <<<_END
                     <tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>
-    _END;
+_END;
                 }
                 echo "</table>";
             echo "</div>";
@@ -106,7 +106,7 @@ else {
 
                 echo <<<_END
                     <tr><td>$team_ID</td><td>$team_name</td><td>$creator_name</td><td>$creation_date</td><td><form method="POST" action="allTeams.php"><button class="btn btn-secondary" id="table_btn" type=submit name="join_team" value="$team_ID">Join</button></form></td></tr>
-    _END;
+_END;
                 }
                 echo "</table>";
             echo "</div>";
