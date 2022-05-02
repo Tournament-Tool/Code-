@@ -41,7 +41,7 @@ if (isset($_SESSION['loggedIn'])) {
                 $join_date = $row['join_date'];
 
                 echo <<<_END
-                 "<tr><td>$username</td><td>$team_name</td><td>$role</td><td>$join_date</td></tr>"
+                 <tr><td>$username</td><td>$team_name</td><td>$role</td><td>$join_date</td></tr>
 _END;
             }
 
