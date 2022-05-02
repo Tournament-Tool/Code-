@@ -70,7 +70,7 @@ _END;
             <a class='options' href='createTournament.php'>Create Tournaments</a>
             <a class='options' href='allTeams.php'>View Teams</a>
             <a class='options' href='myteam.php'>Your Teams</a>
-            <a class='options' href='mytournaments.php'>Your Tournaments</a>
+            <a class='options' href='viewmytournaments.php'>Your Tournaments</a>
 
             <div class="menu-container d-inline float-end">
                 <a class='options' href='signout.php'>Sign Out (<b>{$username}</b>)</a>
