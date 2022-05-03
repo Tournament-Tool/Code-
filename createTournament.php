@@ -84,15 +84,17 @@ if (isset($_SESSION['loggedIn'])) {
                     $tournament_id = $rowTournamentID['id'];
 
                     for ($x = 0; $x <= 2; $x++) {
-                        echo "The number is: $x <br>";
                         $createMatchQuery = "INSERT INTO matches (id, tournament_id) VALUES ('$x', '$tournament_id')";
                         $resultCreateMatch = mysqli_query($connection, $createMatchQuery);
 
                         if ($resultCreateMatch){
-                            echo "Success";
+                            if($x == 2){
+                                $message = "Your tournament has been created you can find it here:";
+                            }
                         }
                         else{
-                            echo "OPS";
+                            $message = "Something went wrong with setting up the matches";
+                            break;
                         }
                       }
 
