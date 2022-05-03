@@ -2,7 +2,7 @@
 include 'header.php';
 
 if (isset($_SESSION['loggedIn'])){
-        $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
     if (!$connection)
     {
         die("Connection failed: " . $mysqli_connect_error);
@@ -37,10 +37,12 @@ if (isset($_SESSION['loggedIn'])){
         <form action="tournament.php" method="get">
             <tr><td><button name="id" type="submit" value="{$row['id']}">View Tournament</button></td></tr>
         </form>
-            <form action="view.php" method="post">
+        <form action="view.php" method="post">
             <tr><td><button name="join" value="{$row['id']}">Send Application</button></td></tr>
-
-            </form>
+        </form>
+        <form method="POST" action="edittournament.php">
+            <tr><td><button type="submit" name="update" value="{$row['id']}">Update Tournament</button></td></tr>
+        </form>   
         </table>
         </body>
     </html>
