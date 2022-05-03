@@ -37,8 +37,8 @@ if (isset($_SESSION['loggedIn'])){
         <form action="tournament.php" method="get">
             <tr><td><button name="id" type="submit" value="{$row['id']}">View Tournament</button></td></tr>
         </form>
-        <form action="view.php" method="post">
-            <tr><td><button name="join" value="{$row['id']}">Send Application</button></td></tr>
+        <form action="application.php" method="post">
+            <tr><td><button name="join" value="{$row['id']}">View Application</button></td></tr>
         </form>
         <form method="POST" action="edittournament.php">
             <tr><td><button type="submit" name="update" value="{$row['id']}">Update Tournament</button></td></tr>
