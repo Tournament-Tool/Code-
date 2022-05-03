@@ -7,7 +7,8 @@ if (!$connection)
     die("Connection failed: " . $mysqli_connect_error);
 }
 $idd = $_SESSION['id'];
-$query = "SELECT user_id, users.username ,role, status, join_date FROM team_members INNER JOIN teams ON team_members.team_id = teams.id INNER JOIN users ON users.id = team_members.user_id WHERE status = 'Pending' AND teams.creator_id = {$idd}";
+
+$query = "SELECT user_id, users.username ,role, status, join_date FROM team_members INNER JOIN teams ON team_members.team_id = teams.id INNER JOIN users ON users.id = team_members.user_id WHERE status = 'Pending'";
 $result = mysqli_query($connection, $query);
 
 $n = mysqli_num_rows($result);
@@ -29,6 +30,10 @@ $n = mysqli_num_rows($result);
         </form>
       _END;
       }
+}
+
+else {
+  echo"NO applicatoins found";
 }
 
 
