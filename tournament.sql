@@ -51,9 +51,9 @@ INSERT INTO `games` (`id`, `title`, `release_date`, `logo`) VALUES
 
 CREATE TABLE `matches` (
   `id` int(11) NOT NULL,
+  `tournament_id` int(11) NOT NULL,
   `team1_id` int(11) DEFAULT NULL,
   `team2_id` int(11) DEFAULT NULL,
-  `tournament_id` int(11) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `score` varchar(255) DEFAULT NULL,
   `winner_id` int(11) DEFAULT NULL,
@@ -64,10 +64,10 @@ CREATE TABLE `matches` (
 -- Dumping data for table `matches`
 --
 
-INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `tournament_id`, `type`, `score`, `winner_id`, `playing_date`) VALUES
-(1, 1, 2, 1, 'Semi-finals', '3-2', 1, '2022-05-21'),
-(2, 3, 4, 1, 'Semi-finals', '2-3', 4, '2022-05-21'),
-(3, 1, 4, 1, 'Finals', '1-3', 4, '2022-05-22');
+INSERT INTO `matches` (`id`, `tournament_id`, `team1_id`, `team2_id`, `type`, `score`, `winner_id`, `playing_date`) VALUES
+(1, 1, 1, 2, 'Semi-finals', '3-2', 1, '2022-05-21'),
+(2, 1, 3, 4, 'Semi-finals', '2-3', 4, '2022-05-21'),
+(3, 1, 1, 4, 'Finals', '1-3', 4, '2022-05-22');
 
 -- --------------------------------------------------------
 
@@ -244,7 +244,7 @@ ALTER TABLE `games`
 -- Indexes for table `matches`
 --
 ALTER TABLE `matches`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`, `tournament_id`),
   ADD KEY `team1_id` (`team1_id`),
   ADD KEY `team2_id` (`team2_id`),
   ADD KEY `tournament_id` (`tournament_id`);
@@ -303,11 +303,6 @@ ALTER TABLE `users`
 ALTER TABLE `games`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT for table `matches`
---
-ALTER TABLE `matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `organisations`
@@ -362,9 +357,7 @@ ALTER TABLE `teams`
 --
 ALTER TABLE `team_members`
   ADD CONSTRAINT `team_members_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`),
-  ADD CONSTRAINT `team_members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `team_members_ibfk_3` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`),
-  ADD CONSTRAINT `team_members_ibfk_4` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`);
+  ADD CONSTRAINT `team_members_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `tournaments`
