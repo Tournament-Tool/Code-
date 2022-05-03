@@ -33,8 +33,10 @@ if (isset($_SESSION['loggedIn'])){
         <tr><td>Game: {$game}</td></tr>  <tr><td>Format: {$format}</td></tr>  <tr><td>by: {$creator_name}</td></tr>
         <tr><td>{$start_date}</td>
         </tr><tr><td><img src="{$bracket_image}" alt="{$title}" title="{$title}" width="200" height="150"></td></tr>
+        <form action="tournament.php" method="get">
+            <tr><td><button name="id" type="submit" value="{$row['id']}">View Tournament</button></td></tr>
+        </form>
             <form action="view.php" method="post">
-            <tr><td><button name="viewButton" value="{$row['id']}"> View Tournament</button></td></tr>
             <tr><td><button name="join" value="{$row['id']}">Send Application</button></td></tr>
 
             </form>
@@ -60,9 +62,11 @@ if(isset($_POST['join'])){
     header('Location: application.php');
 }
 
+/* error "header already sent" / replaced and fixed now
 if(isset($_POST['viewButton'])){
     $loc = $_POST["viewButton"];
     header("Location: tournament.php?id={$loc}");
 }
+*/
 include_once 'footer.php';
 ?>
