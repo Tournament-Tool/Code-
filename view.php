@@ -37,7 +37,7 @@ if (isset($_SESSION['loggedIn'])){
             <tr><td><button name="id" type="submit" value="{$row['id']}">View Tournament</button></td></tr>
         </form>
             <form action="view.php" method="post">
-            <tr><td><button name="join" value="{$row['id']}">Send Application</button></td></tr>
+            <tr><td><button type="submit" name="join" value="{$row['id']}">Send Application</button></td></tr>
 
             </form>
         </table>
@@ -46,6 +46,27 @@ if (isset($_SESSION['loggedIn'])){
 _END;
 
     }
+
+    if(isset($_POST['join'])){
+        $idd = $_SESSION['id'];
+    
+        $tid = $_POST['join'];
+        $query = "INSERT INTO tournament_teams (team_id, tournament_id, status, application_date) VALUES ('$idd', '$tid', 'Pending', sysdate())";
+      
+        $result = mysqli_query($connection, $query);
+                          //no data returned, we just test for true/false
+                          //if success     
+                          if ($result) {
+                              // show a successful message:
+                              echo "<br><br><h2 class=\"text-center\"><b>Application sent successfully<b><div class=\"spinner-border\" role=\"status\"><span class=\"sr-only\"></span></div></h2>";
+                              //header ("Refresh: 2; URL=view.php");
+                          }
+                          //if failed
+                          else {
+                              // show an unsuccessful message:
+                              echo "<br><br><h2 class=\"text-center\"><b>Failed to send application<b></h2>";
+                          }
+      }
 }
 
     else {
@@ -57,10 +78,12 @@ elseif (!isset($_SESSION['loggedIn'])){
     echo"<br><br><br><h2 class=\"text-center\">You need to be signed in to view this page</h2>";
 }
 
-if(isset($_POST['join'])){
+/*if(isset($_POST['join'])){
     $_SESSION['join'] = $_POST["join"];
     header('Location: application.php');
-}
+}*/
+
+
 
 /* error "header already sent" / replaced and fixed now
 if(isset($_POST['viewButton'])){
