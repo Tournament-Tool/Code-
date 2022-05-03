@@ -83,7 +83,7 @@ if (isset($_SESSION['loggedIn'])) {
                     $rowTournamentID = mysqli_fetch_assoc($resultTournamentId);
                     $tournament_id = $rowTournamentID['id'];
 
-                    for ($x = 0; $x <= 2; $x++) {
+                    for ($x = 1; $x <= 3; $x++) {
                         $createMatchQuery = "INSERT INTO matches (id, tournament_id) VALUES ('$x', '$tournament_id')";
                         $resultCreateMatch = mysqli_query($connection, $createMatchQuery);
 
