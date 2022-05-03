@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
         die("Connection failed: " . $mysqli_connect_error);
     }
 
-    $query = "SELECT tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON tournaments.id = games.id
+    $query = "SELECT tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON tournaments.game_id = games.id
     INNER JOIN users ON tournaments.creator_id = users.id WHERE tournaments.id = '$id'";
 
     $result = mysqli_query($connection, $query);
@@ -44,7 +44,7 @@ _END;
     }
 
     else {
-        echo "<h1>Tournament not found!</h1>";
+        echo "<br><br><br><h2 class=\"text-center\">Tournament not found!</h2>";
     }
 
     mysqli_close($connection);   
