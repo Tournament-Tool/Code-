@@ -10,11 +10,11 @@ echo<<<START
   Title: <input type="text" name="title" id="tite">
   <br>
   <Label>Tournament format</label>
-    <select name="format_options" id="format_options" placeholder="Select tournament type">
+    <select name="format_options" id="format_options">
     <option value"single_elimination">Signle Elimination</option>
     <option value"double_elimination">Double Elimination</option>
     <option value"round_robin">Round Robin</option>
-  </select>
+    </select>
   <br>
   Number of teams: <input type="number_of_teams" name="number_of_teams" id="number_of_teams">
   <br>
@@ -22,7 +22,13 @@ echo<<<START
   <br>
   Prize fund:<input type="prize_pool" name="prize_pool" id="prize_pool">
   <br>
-  Game:<input type="game" name="game" id="game"><br>
+  <Label>Game:</label>
+  <select name="game" id="game">
+    <option value"League Of Legends">League of Legends</option>
+    <option value"Counter Strike Global Ofensive">Counter Strike Global Ofensive</option>
+    <option value"World Of Warcraft">World Of Warcraft</option>
+  </select>
+  <br>
   <input type="submit" value="Submit" name="submit">
 </form>
 START;
@@ -114,6 +120,7 @@ if (isset($_SESSION['loggedIn'])) {
 else{
     $message = "You are not logged in.<br>";
 }
+mysqli_close($connection);
 
 echo "$message";
 
