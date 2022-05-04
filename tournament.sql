@@ -137,9 +137,9 @@ CREATE TABLE `team_members` (
 --
 
 INSERT INTO `team_members` (`team_id`, `user_id`, `role`, `status`, `join_date`, `resign_date`, `application_status`) VALUES
-(1, 1, 'Player', 'Aproved', '2012-03-15', '0000-00-00', 'Aoproved'),
-(2, 2, 'Coach', 'Aproved', '2012-03-15', '0000-00-00', 'Aoproved'),
-(2, 3, 'Player', 'Aproved', '2012-03-15', '0000-00-00', 'Aoproved');
+(1, 1, 'Player', 'Approved', '2012-03-15', '0000-00-00', 'Aoproved'),
+(2, 2, 'Coach', 'Approved', '2012-03-15', '0000-00-00', 'Aoproved'),
+(2, 3, 'Player', 'Approved', '2012-03-15', '0000-00-00', 'Aoproved');
 
 -- --------------------------------------------------------
 
