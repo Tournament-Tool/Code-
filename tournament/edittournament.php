@@ -15,15 +15,17 @@ if (isset($_SESSION['loggedIn'])){
             die("Connection failed: " . $mysqli_connect_error);
         }
         
-        $query = "SELECT tournaments.title AS ttitle, creation_date, games.title, format, bracket_image FROM tournaments INNER JOIN games ON tournaments.game_id = games.id WHERE tournaments.id = '$tid'";
-        $result = mysqli_query($connection, $query);
+        $query = "SELECT tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, prize_pool, score FROM tournaments INNER JOIN games ON tournaments.game_id = games.id INNER JOIN matches ON matches.tournament_id = tournaments.id WHERE tournaments.id = '$tid' GROUP BY tournament_id ;";
+        $result = mysqli_query($connection, $query); 
         $row = mysqli_fetch_assoc($result);
 
         //store tournament info to display it in form
         $ttitle_display = $row['ttitle'];
         $creation_date_display = $row['creation_date'];
         $game_title_display = $row['title'];
+        $prize_pool_display = $row['prize_pool'];
         $format_display = $row['format'];
+        $score_display = $row['score'];
 
         //user tried to update tournament info
         if (isset($_POST['title'])) {
@@ -31,10 +33,11 @@ if (isset($_SESSION['loggedIn'])){
             // take copies of the credentials the admin submitted:
             $title_input = $_POST['title'];
             $game_title_input = $_POST['game_select'];
-            $format_input = $_POST['format'];
+            $format_input = $_POST['format_select'];
+            $prize_pool_input = $_POST['prize_pool'];
 
             //update user details
-            $query = "UPDATE tournaments SET title = '$title_input', game_id ='$game_title_input', format='$format_input' WHERE id ='$tid'";
+            $query = "UPDATE tournaments SET title = '$title_input', game_id ='$game_title_input', format='$format_input', prize_pool='$prize_pool_input' WHERE id ='$tid'";
 
             $result = mysqli_query($connection, $query);
                     //no data returned, we just test for true/false
@@ -76,6 +79,7 @@ if ($show_form) {
                     <input class="form-control form-control-sm" id="title" type="text" name="title" value="$ttitle_display" maxlength="32" minlength="2" required>
                 </div>
                 <div class="input-group mb-3">
+                    <label for="game_select" class="input-group-text"><b>Game: *</b></label>
                     <select name="game_select" class="form-select w-auto d-inline ms-3">
                         <option value="1">League Of Legends</option>
                         <option value="2">Counter Strike Global Ofensive</option>
@@ -87,8 +91,21 @@ if ($show_form) {
                     <input class="form-control form-control-sm" id="creation_date" type="text" name="creation_date" value="$creation_date_display" maxlength="32" minlength="2" readonly>
                 </div>
                 <div class="input-group mb-3">
-                    <label for="format" class="input-group-text"><b>format: *</b></label>
-                    <input class="form-control form-control-sm" id="format" type="text" name="format" value="$format_display" maxlength="32" minlength="2" required>
+                    <label for="format_select" class="input-group-text"><b>format: *</b></label>
+                    <select name="format_select" class="form-select w-auto d-inline ms-3">
+                        <option value="SWISS">SWISS</option>
+                        <option value="Round Robi">Round Robi</option>
+                        <option value="Single Eli">Single Eli</option>
+                        <option value="Double Eli">Double Eli</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="score" class="input-group-text"><b>Score: *</b></label>
+                    <input class="form-control form-control-sm" id="score" type="text" name="score" value="$score_display" maxlength="32" minlength="2" required>
+                </div>
+                <div class="input-group mb-3">
+                    <label for="prize_pool" class="input-group-text"><b>prize pool: *</b></label>
+                    <input class="form-control form-control-sm" id="prize_pool" type="text" name="prize_pool" value="$prize_pool_display" maxlength="32" minlength="2" required>
                 </div>
                 <div class="container">
                     <button class="mx-auto d-block" type="submit" value="$tid" name="update">Update</button>
