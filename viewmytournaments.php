@@ -10,7 +10,7 @@ if (isset($_SESSION['loggedIn'])){
 
     $user_id = $_SESSION['id'];
 
-    $query = "SELECT tournaments.id, tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username FROM tournaments INNER JOIN games ON games.id = tournaments.game_id
+    $query = "SELECT tournaments.id, tournaments.title AS ttitle, creation_date, games.title, format, bracket_image, users.username, prize_pool FROM tournaments INNER JOIN games ON games.id = tournaments.game_id
     INNER JOIN users ON tournaments.creator_id = users.id WHERE tournaments.creator_id = '$user_id'";
 
     $result = mysqli_query($connection, $query);
@@ -26,6 +26,7 @@ if (isset($_SESSION['loggedIn'])){
         $game = $row['title'];
         $creator_name = $row['username'];
         $format = $row['format'];
+        $prize_pool = $row['prize_pool'];
         $bracket_image = $row['bracket_image'];
         echo <<<_END
         <body>
@@ -33,12 +34,12 @@ if (isset($_SESSION['loggedIn'])){
         <tr><td>{$title}</td></tr>
         <tr><td>Game: {$game}</td></tr>  <tr><td>Format: {$format}</td></tr>  <tr><td>by: {$creator_name}</td></tr>
         <tr><td>{$start_date}</td>
-        </tr><tr><td><img src="{$bracket_image}" alt="{$title}" title="{$title}" width="200" height="150"></td></tr>
+        <tr><td>{$prize_pool}</td>
         <form action="tournament.php" method="get">
             <tr><td><button name="id" type="submit" value="{$row['id']}">View Tournament</button></td></tr>
         </form>
         <form action="application.php" method="post">
-            <tr><td><button name="join" value="{$row['id']}">View Application</button></td></tr>
+            <tr><td><button name="view_tournament_id" value="{$row['id']}">View Application</button></td></tr>
         </form>
         <form method="POST" action="edittournament.php">
             <tr><td><button type="submit" name="update" value="{$row['id']}">Update Tournament</button></td></tr>
@@ -60,9 +61,9 @@ elseif (!isset($_SESSION['loggedIn'])){
     echo"<br><br><br><h2 class=\"text-center\">You need to be signed in to view this page</h2>";
 }
 
-if(isset($_POST['join'])){
-    $_SESSION['join'] = $_POST["join"];
-    header('Location: application.php');
+if(isset($_POST['view_tournament_id'])){
+    $torid = $_POST['view_tournament_id'];
+    $_SESSION['view_tournament_id'] = $torid;           
 }
 
 /* error "header already sent" / replaced and fixed now
